@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//configuration/configuration.json=UTF-8
+encoding//src/com/liferay/petra/messaging/exampleapp/ExampleApp.java=UTF-8
+encoding//static/com.liferay.petra.messaging.exampleapp/favicon.ico=UTF-8
+encoding//static/com.liferay.petra.messaging.exampleapp/index.html=UTF-8
+encoding//static/com.liferay.petra.messaging.exampleapp/main/htm/about.htm=UTF-8
+encoding//static/com.liferay.petra.messaging.exampleapp/main/htm/home.htm=UTF-8
+encoding//test/.gitignore=UTF-8
+encoding//web/main.js=UTF-8
+encoding//web/style.css=UTF-8
+encoding/bnd.bnd=UTF-8
+encoding/com.liferay.petra.messaging.exampleapp.bndrun=UTF-8
+encoding/debug.bndrun=UTF-8
+encoding/readme.md=UTF-8

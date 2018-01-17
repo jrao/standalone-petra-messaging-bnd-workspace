@@ -1,0 +1,28 @@
+#
+# com.liferay.petra.messaging.impl PROVIDER BUNDLE
+#
+
+Bundle-Version:					1.0.0.${tstamp}
+Bundle-Description: \
+	The provider bundle for com.liferay.petra.messaging.impl. \
+	\
+	${warning;Please update this Bundle-Description in com.liferay.petra.messaging.impl/api.bnd}
+
+Export-Package:  \
+	com.liferay.petra.messaging.impl.api;-provide=true
+
+Private-Package:  \
+	com.liferay.petra.messaging.impl
+
+-includeresource: {readme.md}
+
+-buildpath: \
+	osgi.enroute.base.api;version=2.1,\
+	com.liferay.petra.messaging.api;version=latest,\
+	com.liferay.petra.messaging.spi;version=latest,\
+	com.liferay.petra.io
+
+-testpath: \
+	osgi.enroute.junit.wrapper;version=4.12, \
+	osgi.enroute.hamcrest.wrapper;version=1.3
+

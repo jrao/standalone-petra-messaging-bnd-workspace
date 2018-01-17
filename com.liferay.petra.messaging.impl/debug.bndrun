@@ -1,0 +1,13 @@
+#
+# com.liferay.petra.messaging.impl DEBUG LAUNCH SPECFICATION 
+#
+
+-include: ~com.liferay.petra.messaging.impl.bndrun
+
+-runrequires.debug:  \
+	${debug-bundles}
+
+-runtrace: true
+
+-runbundles: \
+	${error;Resolve first}

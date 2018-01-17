@@ -1,0 +1,7 @@
+.DS_Store
+.gradle/
+/generated/
+generated/
+enroute.zip
+.metadata
+*.class

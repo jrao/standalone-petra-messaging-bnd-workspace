@@ -1,0 +1,14 @@
+#
+# com.liferay.petra.messaging.impl LAUNCH SPECIFICATION
+#
+
+
+Bundle-Version:				1.0.0.${tstamp}
+Bundle-SymbolicName:		com.liferay.petra.messaging.impl.launch
+JPM-Command:				provider
+
+
+-runrequires:  \
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.impl.provider)'
+
+-runbundles: ${error;You must first resolve this bndrun file before you can run it}
