@@ -1,22 +1,25 @@
-#
-# com.liferay.petra.messaging.spi DEFAULTS
-#
+Bundle-Name: Liferay Messaging SPI
+Bundle-SymbolicName: com.liferay.petra.messaging.spi
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.petra.messaging.spi,\
+	com.liferay.petra.messaging.spi.proxy,\
+	com.liferay.petra.messaging.spi.sender
 
-Bundle-Version:					1.0.0.${tstamp}
-Bundle-Description: 				\
-	This project contains a complete example with API, provider, and JUnit test code. \
-	\
-	${warning;Please update this Bundle-Description in bnd.bnd}
+Provide-Capability:\
+    osgi.service;\
+        objectClass:List<String>="org.osgi.service.component.ComponentFactory"
+
+Require-Capability:\
+    osgi.implementation;\
+        filter:="(&(osgi.implementation=liferay.messaging)(version>=1.0)(!(version>=2.0)))"
 
 Export-Package: \
 	com.liferay.petra.messaging.spi,\
 	com.liferay.petra.messaging.spi.sender,\
 	com.liferay.petra.messaging.spi.proxy
 
-Require-Capability: \
-	compile-only
-
--includeresource: {readme.md}
+-dsannotations-options: inherit
 
 -buildpath: \
 	osgi.enroute.base.api;version=2.1,\
@@ -24,9 +27,33 @@ Require-Capability: \
 	com.liferay.petra.concurrent,\
 	com.liferay.petra.io,\
 	com.liferay.petra.string,\
-	com.liferay.petra.reflect
+	com.liferay.petra.reflect,\
+	com.liferay.petra.lang
 
 -testpath: \
 	osgi.enroute.junit.wrapper;version=4.12, \
 	osgi.enroute.hamcrest.wrapper;version=1.3
 
+-runrequires: \
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.api)',\
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.spi)'
+
+-runbundles: \
+	com.liferay.petra.concurrent;version='[1.3.0,1.3.1)',\
+	com.liferay.petra.io;version='[1.3.0,1.3.1)',\
+	com.liferay.petra.lang;version='[1.1.2,1.1.3)',\
+	com.liferay.petra.memory;version='[1.0.3,1.0.4)',\
+	com.liferay.petra.messaging.api;version=snapshot,\
+	com.liferay.petra.messaging.spi;version=snapshot,\
+	com.liferay.petra.nio;version='[1.0.3,1.0.4)',\
+	com.liferay.petra.reflect;version='[1.2.0,1.2.1)',\
+	com.liferay.petra.string;version='[1.1.0,1.1.1)',\
+	org.apache.felix.configadmin;version='[1.8.8,1.8.9)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
+	org.eclipse.equinox.metatype;version='[1.4.100,1.4.101)',\
+	org.osgi.service.metatype;version='[1.3.0,1.3.1)',\
+	osgi.enroute.logger.simple.provider;version='[2.1.0,2.1.1)',\
+	org.osgi.service.component;version='[1.3.0,1.3.1)',\
+	osgi.promise;version='[6.0.0,6.0.1)',\
+	com.liferay.petra.messaging.impl;version=snapshot

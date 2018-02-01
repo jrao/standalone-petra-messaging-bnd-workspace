@@ -1,28 +1,59 @@
-#
-# com.liferay.petra.messaging.impl PROVIDER BUNDLE
-#
+Bundle-Name: Liferay Messaging Impl
+Bundle-SymbolicName: com.liferay.petra.messaging.impl
+Bundle-Version: 1.0.0
+Liferay-Releng-Module-Group-Description:
+Liferay-Releng-Module-Group-Title:
 
-Bundle-Version:					1.0.0.${tstamp}
-Bundle-Description: \
-	The provider bundle for com.liferay.petra.messaging.impl. \
-	\
-	${warning;Please update this Bundle-Description in com.liferay.petra.messaging.impl/api.bnd}
+Provide-Capability:\
+    osgi.implementation;\
+        osgi.implementation="liferay.messaging";\
+        version:Version="${Bundle-Version}"
 
-Export-Package:  \
-	com.liferay.petra.messaging.impl.api;-provide=true
-
-Private-Package:  \
-	com.liferay.petra.messaging.impl
-
--includeresource: {readme.md}
+Private-Package: \
+	com.liferay.petra.messaging.impl.configuration,\
+	com.liferay.petra.messaging.impl.internal,\
+	com.liferay.petra.messaging.impl.internal.jmx,\
+	com.liferay.petra.messaging.impl.internal.sender
 
 -buildpath: \
-	osgi.enroute.base.api;version=2.1,\
+	com.liferay.petra.concurrent,\
+	com.liferay.petra.io,\
 	com.liferay.petra.messaging.api;version=latest,\
 	com.liferay.petra.messaging.spi;version=latest,\
-	com.liferay.petra.io
+	com.liferay.petra.reflect,\
+	com.liferay.petra.string,\
+	org.osgi.service.component,\
+	org.osgi.service.component.annotations,\
+	org.osgi.service.metatype.annotations,\
+	osgi.enroute.base.api;version=2.1,\
+	slf4j.api,\
+	osgi.core
 
 -testpath: \
 	osgi.enroute.junit.wrapper;version=4.12, \
 	osgi.enroute.hamcrest.wrapper;version=1.3
 
+-runrequires: \
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.api)',\
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.spi)',\
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.impl)'
+
+-runbundles: \
+	com.liferay.petra.concurrent;version='[1.3.0,1.3.1)',\
+	com.liferay.petra.io;version='[1.3.0,1.3.1)',\
+	com.liferay.petra.lang;version='[1.1.2,1.1.3)',\
+	com.liferay.petra.memory;version='[1.0.3,1.0.4)',\
+	com.liferay.petra.messaging.api;version=snapshot,\
+	com.liferay.petra.messaging.impl;version=snapshot,\
+	com.liferay.petra.messaging.spi;version=snapshot,\
+	com.liferay.petra.nio;version='[1.0.3,1.0.4)',\
+	com.liferay.petra.reflect;version='[1.2.0,1.2.1)',\
+	com.liferay.petra.string;version='[1.1.0,1.1.1)',\
+	org.apache.felix.configadmin;version='[1.8.8,1.8.9)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
+	org.eclipse.equinox.metatype;version='[1.4.100,1.4.101)',\
+	org.osgi.service.component;version='[1.3.0,1.3.1)',\
+	org.osgi.service.metatype;version='[1.3.0,1.3.1)',\
+	osgi.enroute.logger.simple.provider;version='[2.1.0,2.1.1)',\
+	osgi.promise;version='[6.0.0,6.0.1)'

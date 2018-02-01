@@ -1,20 +1,12 @@
-#
-# com.liferay.petra.messaging.api DEFAULTS
-#
+Bundle-Name: Liferay Messaging API
+Bundle-SymbolicName: com.liferay.petra.messaging.api
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.petra.messaging.api
 
-Bundle-Version:					1.0.0.${tstamp}
-Bundle-Description: 				\
-	This project contains a complete example with API, provider, and JUnit test code. \
-	\
-	${warning;Please update this Bundle-Description in bnd.bnd}
+Require-Capability:\
+    osgi.implementation;\
 
-Export-Package:  \
-	com.liferay.petra.messaging.api
-
-Require-Capability: \
-	compile-only
-
--includeresource: {readme.md}
+filter:="(&(osgi.implementation=liferay.messaging)(version>=1.0)(!(version>=2.0)))"
 
 -buildpath:  \
 	osgi.enroute.base.api;version=2.1
@@ -23,3 +15,8 @@ Require-Capability: \
 	osgi.enroute.junit.wrapper;version=4.12, \
 	osgi.enroute.hamcrest.wrapper;version=1.3
 
+-runrequires: osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.api)'
+
+-runbundles: \
+	com.liferay.petra.messaging.api;version=snapshot,\
+	org.apache.felix.log;version='[1.0.1,1.0.2)'

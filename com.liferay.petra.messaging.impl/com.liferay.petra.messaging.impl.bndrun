@@ -8,7 +8,10 @@ Bundle-SymbolicName:		com.liferay.petra.messaging.impl.launch
 JPM-Command:				provider
 
 
--runrequires:  \
-	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.impl.provider)'
 
 -runbundles: ${error;You must first resolve this bndrun file before you can run it}
+-runrequires: \
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.api)',\
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.spi)',\
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.impl)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)'

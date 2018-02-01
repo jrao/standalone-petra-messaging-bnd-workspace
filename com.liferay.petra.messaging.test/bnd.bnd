@@ -1,0 +1,106 @@
+Bundle-Name: Liferay Messaging Test
+Bundle-Symbolic-Name: com.liferay.petra.messaging.test
+Bundle-Version:1.0.0
+
+Private-Package: \
+	com.liferay.petra.messaging.test
+
+Export-Package:\
+	${p}.test;-split-package:=first
+
+Test-Cases: ${classes;CONCRETE;ANNOTATED;org.junit.Test}
+
+-buildpath: \
+	com.liferay.petra.messaging.api;version=latest,\
+	osgi.core;version=5.0,\
+	org.osgi.service.component;version=1.3.0,\
+	org.osgi.service.component.annotations;version=1.3.0,\
+	com.liferay.osgi.util;version=3.0.0,\
+	osgi.promise,\
+	com.liferay.petra.concurrent,\
+	com.liferay.petra.messaging.spi;version=latest,\
+	slf4j.api;version=1.7.21,\
+	com.liferay.petra.lang,\
+	com.liferay.petra.string,\
+	com.liferay.petra.io,\
+	com.liferay.petra.messaging.impl;version=latest
+
+-testpath: \
+	osgi.enroute.junit.wrapper;version=4.12, \
+	osgi.enroute.hamcrest.wrapper;version=1.3
+
+##
+## All of remainder is to make bnd's `-make` function work in our maven project.
+##
+
+# We need to define a root package so we can split the classpath contents into many `sub-bundles`.
+p = com.liferay.petra.messaging.test
+
+# We need to tell bnd's make function what the classpath is for making `sub-bundles`.
+-classpath: ${.}/classes
+
+-dsannotations-options: inherit
+
+# This is the instruction containing the make recipe and the recipe dir pattern for finding the bnd files.
+-includeresource:\
+	tb1.jar,\
+	tb10.jar,\
+	tb11.jar,\
+	tb12.jar,\
+	tb13.jar,\
+	tb14.jar,\
+	tb15.jar,\
+	tb16.jar,\
+	tb17.jar,\
+	tb18.jar,\
+	tb19.jar,\
+	tb2.jar,\
+	tb20.jar,\
+	tb21.jar,\
+	tb3.jar,\
+	tb4.jar,\
+	tb5.jar,\
+	tb6.jar,\
+	tb7.jar,\
+	tb8.jar,\
+	tb9.jar
+
+# Include the `-make'd` jars in the test bundle. This also happens to trigger the make function
+# so don't forget to list new jars here as new bnd files are added into the recipe dir.
+-make: (*).(jar); type=bnd; recipe="${.}/bnd/$1.bnd"
+
+-runrequires: \
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.test)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.api)',\
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.spi)',\
+	osgi.identity;filter:='(osgi.identity=com.liferay.petra.messaging.impl)',\
+	osgi.identity;filter:='(osgi.identity=com.liferay.portal.jmx)'
+-runbundles: \
+	com.liferay.petra.concurrent;version='[1.3.0,1.3.1)',\
+	com.liferay.petra.io;version='[1.3.0,1.3.1)',\
+	com.liferay.petra.lang;version='[1.1.2,1.1.3)',\
+	com.liferay.petra.memory;version='[1.0.3,1.0.4)',\
+	com.liferay.petra.messaging.api;version=snapshot,\
+	com.liferay.petra.messaging.impl;version=snapshot,\
+	com.liferay.petra.messaging.spi;version=snapshot,\
+	com.liferay.petra.messaging.test;version=snapshot,\
+	com.liferay.petra.nio;version='[1.0.3,1.0.4)',\
+	com.liferay.petra.reflect;version='[1.2.0,1.2.1)',\
+	com.liferay.petra.string;version='[1.1.0,1.1.1)',\
+	org.apache.felix.configadmin;version='[1.8.8,1.8.9)',\
+	org.apache.felix.gogo.runtime;version='[1.0.0,1.0.1)',\
+	org.apache.felix.gogo.shell;version='[1.0.0,1.0.1)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
+	org.eclipse.equinox.metatype;version='[1.4.100,1.4.101)',\
+	org.osgi.service.component;version='[1.3.0,1.3.1)',\
+	org.osgi.service.metatype;version='[1.3.0,1.3.1)',\
+	osgi.enroute.hamcrest.wrapper;version='[1.3.0,1.3.1)',\
+	osgi.enroute.junit.wrapper;version='[4.12.0,4.12.1)',\
+	osgi.promise;version='[6.0.0,6.0.1)',\
+	log4j;version='[1.2.17,1.2.18)',\
+	slf4j.api;version='[1.7.21,1.7.22)',\
+	slf4j.log4j12;version='[1.6.1,1.6.2)',\
+	com.liferay.osgi.util;version='[3.0.0,3.0.1)',\
+	com.liferay.portal.jmx;version='[3.0.4,3.0.5)'
